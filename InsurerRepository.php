@@ -1,5 +1,5 @@
 <?php
-require('AbstractRepository.php');
+require_once('myAutoLoader.php');
 class InsurerRepository extends AbstractRepository
 {
     public function __construct($sql)

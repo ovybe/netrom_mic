@@ -1,6 +1,7 @@
 <?php
 require_once('MySQL.php');
 require_once('InsurerRepository.php');
+require_once('InsurerController.php');
 
 function Get($index, $defaultValue) {
     return isset($_GET[$index]) ? $_GET[$index] : $defaultValue;
@@ -10,10 +11,8 @@ $action=Get('action',null);
 if($controller!=null && $action!=null)
     {
         //echo Router->route($controller,$action);
-        $sql=new MySQL('localhost','root','','netrom_insurance');
-        $insurersRepo=new InsurerRepository($sql);
-        $arr=$insurersRepo->findAll();
-        print_r($arr);
+        $controller=new InsurerController();
+        echo $controller->displayAllEntities();
     }
 
 else

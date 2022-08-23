@@ -2,14 +2,15 @@
 class Router
 {
     public $controller;
+    public $controllername;
     public $action;
 
     public function __construct(string $cont,string $act) {
-        $this->controller=$cont;
+        $this->controllername=$cont;
         $this->action=$act;
     }
-    public function newInsuranceController(){
-
+    public function newController(){
+        $this->controller=new $this->controllername();
     }
 }
 ?>

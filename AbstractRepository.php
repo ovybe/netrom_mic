@@ -1,5 +1,4 @@
 <?php
-require_once('InsurersEntity.php');
 abstract class AbstractRepository
 {
     protected MySQL $sql;
@@ -11,9 +10,9 @@ abstract class AbstractRepository
         $classname=strtolower(
             str_replace("Repository","s",get_class($this))
         );
-        $query="SELECT * FROM ? WHERE ? = ?";
+        $query="SELECT * FROM ".$classname." WHERE ? = ?";
         $stmt=$conn->prepare($query);
-        $stmt->bind_param("sss",$classname,$target,$value);
+        $stmt->bind_param("ss",$classname,$target,$value);
         $result=$stmt->execute();
         $objects=fetch_result($classname,$result);
         return $objects;
